@@ -10,10 +10,15 @@ var gTrans = {
     es: 'Título',
     he: 'שם הספר',
   },
+  'price-table': {
+    en: 'Price ⬇️',
+    es: 'Precio ⬇️',
+    he: '⬇️ מחיר',
+  },
   'price': {
-    en: 'Price',
-    es: 'Precio',
-    he: 'מחיר',
+    en: 'Price ',
+    es: 'Precio ',
+    he: ' מחיר',
   },
   'filter-active': {
     en: 'Active',
@@ -46,9 +51,9 @@ var gTrans = {
     he: 'פעולות'
   },
   'title': {
-    en: 'Title',
-    es: 'Título',
-    he: 'שם הספר'
+    en: 'Title ⬇️',
+    es: 'Título ⬇️',
+    he: '⬇️ שם הספר'
   },
   'prev-page': {
     en: 'Prev Page',
@@ -88,14 +93,39 @@ var gTrans = {
 }
 var gCurrLang = 'en';
 
+function formatCurrency(num) {
+  var langs = [{
+      lang: 'en',
+      currency: 'USD'
+    },
+    {
+      lang: 'he',
+      currency: 'ILS'
+    },
+    {
+      lang: 'es',
+      currency: 'EUR'
+    }
+
+  ]
+  var curr = langs.find(function (lang) {
+    return lang.lang === gCurrLang
+  })
+  console.log(curr);
+  return new Intl.NumberFormat(gCurrLang, {
+    style: 'currency',
+    currency: curr.currency
+  }).format(num);
+}
+
 function getTrans(transKey) {
-  var keyTrans = gTrans[transKey]
-  if (!keyTrans) return 'UNKNOWN'
+  var keyTrans = gTrans[transKey];
+  if (!keyTrans) return 'UNKNOWN';
 
   var txt = keyTrans[gCurrLang]
-  if (!txt) txt = keyTrans.en
+  if (!txt) txt = keyTrans.en;
 
-  return txt
+  return txt;
 }
 
 function doTrans() {
@@ -125,12 +155,7 @@ function formatNum(num) {
   return new Intl.NumberFormat(gCurrLang).format(num);
 }
 
-function formatCurrency(num) {
-  return new Intl.NumberFormat(gCurrLang, {
-    style: 'currency',
-    currency: 'ILS'
-  }).format(num);
-}
+
 
 // function formatDate(time) {
 

@@ -8,7 +8,7 @@ function renderBooks() {
   var books = getBooksForDisplay();
   var strHTMLs = books.map(function (book) {
     return `<tr>
-             <td>${book.id}</td><td>${book.name}</td> <td>${book.price}</td>
+             <td>${book.id}</td><td>${book.name}</td> <td>${formatCurrency(book.price)}</td>
              <td><img src="img/${book.imgUrl}.jpg"/> </td>
              <td>${book.rate}</td>
              <td><button class="btn btn-outline-info" onclick="onReadBook('${book.id}')" data-trans="read" data-toggle="modal" data-target="#exampleModalCenter" >Read</button></td>
@@ -112,7 +112,6 @@ function onNextPage() {
   setTimeout(function () {
     elTable.classList.remove('animate__animated', 'animate__zoomIn')
   }, 1000)
-  console.log(elTable);
 }
 
 function onPrevPage() {
