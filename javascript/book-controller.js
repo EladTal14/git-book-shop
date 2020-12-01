@@ -8,12 +8,12 @@ function renderBooks() {
   var books = getBooksForDisplay();
   var strHTMLs = books.map(function (book) {
     return `<tr>
-             <td data-trans="${book.name}">${book.id}</td><td>${book.name}</td> <td>${book.price}</td>
+             <td>${book.id}</td><td>${book.name}</td> <td>${book.price}</td>
              <td><img src="img/${book.imgUrl}.jpg"/> </td>
              <td>${book.rate}</td>
-             <td><button onclick="onReadBook('${book.id}')" data-trans="read">Read</button></td>
-             <td><button onclick="onUpdateBook('${book.id}')" data-trans="update">Update</button></td>
-             <td><button class="btn-remove-book" onclick="onRemoveBook('${book.id}')" data-trans="delete">Delete</button></td>
+             <td><button class="btn btn-outline-info" onclick="onReadBook('${book.id}')" data-trans="read" data-toggle="modal" data-target="#exampleModalCenter" >Read</button></td>
+             <td><button class="btn btn-outline-success" onclick="onUpdateBook('${book.id}')" data-trans="update">Update</button></td>
+             <td><button class="btn-remove-book btn btn-outline-danger" onclick="onRemoveBook('${book.id}')" data-trans="delete">Delete</button></td>
              </tr>`
   })
   document.querySelector('.books-display').innerHTML = strHTMLs.join('')
@@ -32,16 +32,12 @@ function onAddBook() {
   if (!elTitle.value || elPrice === '') return;
   addBook(elTitle.value, elPrice.value);
   renderBooks();
-  // var elSpan = document.querySelector('.book-added');
-  // elSpan.innerText = 'book added';
   var elHeadLine = document.querySelector('#head-line');
-  elHeadLine.classList.add('animate__animated', 'animate__bounce');
-  console.log(elHeadLine.classList);
+  elHeadLine.classList.add('animate__animated', 'animate__heartBeat');
   elTitle.value = '';
   elPrice.value = '';
   setTimeout(function () {
-    // elSpan.innerText = ''
-    elHeadLine.classList.remove('animate__animated', 'animate__bounce');
+    elHeadLine.classList.remove('animate__animated', 'animate__heartBeat');
   }, 2100)
 }
 
@@ -52,23 +48,31 @@ function onUpdateBook(bookId) {
   elBtn.name = `${bookId}`;
 }
 
+
 function onReadBook(bookId) {
   var book = getBookById(bookId);
-  var elModal = document.querySelector('.modal123');
-
+  var elModal = document.querySelector('#exampleModalCenter')
   elModal.innerHTML = `
-      <h5 data-trans="${book.name}">${book.name}</h5>
-      <h6><img src="img/${book.imgUrl}.jpg"/></h6>
-      <p>${book.desc}</p>
-      <button onclick="onChangeRate('${bookId}','+')">+</button><span class="book-rate">${book.rate}</span><button onclick="onChangeRate('${bookId}','-')">-</button>
-      <div></div>
-      <button onclick="onCloseModal()" data-trans="close">Close</button>`
-  elModal.hidden = false;
+<div class="modal-dialog modal-dialog-centered" role="document">
+<div class="modal-content">
+  <div class="modal-header">
+    <h5 class="modal-title" id="exampleModalLongTitle">${book.name}</h5>
+    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+    </button>
+    </div>
+    <div class="modal-body">
+    <h6><img src="img/${book.imgUrl}.jpg"/></h6>
+  <p>${book.desc}</p>
+  </div>
+  <div class="modal-footer">
+  <button class="btn-primary ml-3" onclick="onChangeRate('${bookId}','+')">+</button><span class="book-rate ml-3">${book.rate}</span><button class="btn-primary ml-3" onclick="onChangeRate('${bookId}','-')">-</button>
+  <button data-trans="close" class="btn-warning mt-1" data-dismiss="modal">Close</button>
+  </div>
+</div>
+</div>
+`
   doTrans();
-}
-
-function onCloseModal() {
-  document.querySelector('.modal123').hidden = true;
 }
 
 function onChangeRate(bookId, elbtnVal) {
@@ -103,11 +107,23 @@ function onSortByPrice() {
 function onNextPage() {
   nextPage();
   renderBooks();
+  var elTable = document.querySelector('table')
+  elTable.classList.add('animate__animated', 'animate__zoomIn')
+  setTimeout(function () {
+    elTable.classList.remove('animate__animated', 'animate__zoomIn')
+  }, 1000)
+  console.log(elTable);
 }
 
 function onPrevPage() {
   prevPage();
   renderBooks();
+  var elTable = document.querySelector('table')
+  elTable.classList.add('animate__animated', 'animate__zoomIn')
+  setTimeout(function () {
+    elTable.classList.remove('animate__animated', 'animate__zoomIn')
+  }, 1000)
+
 }
 
 function onSetLang(lang) {

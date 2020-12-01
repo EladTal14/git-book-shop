@@ -11,17 +11,20 @@
 </head>
 
 <body onload="onInit()">
-  <div class="d-flex-column justify-content-center">
-    <h1 id="head-line" data-trans="book-shop">Book Shop</h1>
-    <input type="text" name="title" data-trans="placeholder-title" placeholder="Title">
-    <input type="number" name="price" min="0" data-trans="price" placeholder="Price">
-    <button class="btn-add-book" data-trans="add" onclick="onAddBook()">add</button>
+  <h1 id="head-line" data-trans="book-shop">Book Shop</h1>
+  <div class="d-flex-column justify-content-start">
+    <div class="add-book">
+      <input type="text" name="title" data-trans="placeholder-title" placeholder="Title">
+      <input type="number" name="price" min="0" data-trans="price" placeholder="Price">
+      <button class="btn-add-book btn-primary" data-trans="add" onclick="onAddBook()">add</button>
+      <select onchange="onSetLang(this.value)" class="lang-select m-3">
+        <option value="en">English</option>
+        <option value="he">עברית</option>
+        <option value="es">Spanish</option>
+      </select>
+    </div>
     <!-- <span class="book-added"></span> -->
-    <select onchange="onSetLang(this.value)">
-      <option value="en">English</option>
-      <option value="he">עברית</option>
-      <option value="es">Spanish</option>
-    </select>
+
     <div class="flex-con">
       <table class="books-table">
         <thead>
@@ -35,18 +38,23 @@
         <tbody class="books-display"></tbody>
       </table>
       <div class="buttons-pages">
-        <button onclick="onPrevPage()" data-trans="prev-page">Previous Page</button>
-        <button onclick="onNextPage()" data-trans="next-page">Next Page</button>
+        <button onclick="onPrevPage()" class=" btn-primary" data-trans="prev-page">Previous Page</button>
+        <button onclick="onNextPage()" class="btn-primary" data-trans="next-page">Next Page</button>
         <div class="modal-update-price" hidden>
           <input type="number" min="0" data-trans="new-price" placeholder="What is the new price?" name="newPrice" />
-          <button onclick="onUpdatePrice()" data-trans="update">update</button>
+          <button onclick="onUpdatePrice()" data-trans="update" class="btn btn-primary">Update</button>
         </div>
-      </div>
-      <div class="modal123" hidden>
-
       </div>
     </div>
   </div>
+  </div>
+  <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+    aria-hidden="true">
+  </div>
+
+
+
+
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
   <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
     integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous">

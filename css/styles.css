@@ -1,5 +1,5 @@
 body {
-  background-color: rgb(116, 81, 81);
+  background-color: rgb(243, 99, 99);
 }
 
 input {
@@ -53,6 +53,7 @@ img {
 
 .modal * {
   margin: 10px;
+  display: flex;
 }
 
 table img {
@@ -73,6 +74,34 @@ table img {
   cursor: pointer;
 }
 
-.animate__animated.animate__bounce {
+
+#head-line{
+  text-align: center;
+}
+.add-book{
+  margin: auto;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.animate__animated.animate__heartBeat{
   --animate-duration: 2s;
+}
+.modal button{
+  text-align: center;
+  margin: auto;
+}
+.modal-footer{
+  display: flex;
+  
+}
+.modal-footer button{
+  margin: auto !important;
+}
+.book-rate{
+  background-color: rgb(200, 200, 236);
+  color: red;
 }
