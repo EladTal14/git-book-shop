@@ -1,6 +1,6 @@
 'use strict'
 const KEY = 'Books'
-const PAGE_SIZE = 3;
+const PAGE_SIZE = 4;
 var gBooks = [];
 var gPageIdx = 0;
 _createBooks();
@@ -100,11 +100,11 @@ function sortByPrice() {
 function nextPage() {
   gPageIdx++;
   if (gPageIdx * PAGE_SIZE >= gBooks.length) gPageIdx = 0;
-  console.log(gPageIdx);
+
 }
 
 function prevPage() {
   gPageIdx--;
   if (gPageIdx < 0) gPageIdx = Math.floor((gBooks.length - 1) / PAGE_SIZE);
-  console.log(gPageIdx);
+
 }

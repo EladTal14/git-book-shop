@@ -4,41 +4,62 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>book-Shit</title>
+  <title>book-Shop</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+    integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
   <link rel="stylesheet" href="css/styles.css">
 </head>
 
 <body onload="onInit()">
-  <h1>Book Shop</h1>
-  <input type="text" name="title" placeholder="Title">
-  <input type="number" name="price" min="0" placeholder="Price">
-  <button class="btn-add-book" onclick="onAddBook()">add</button>
-  <span class="book-added"></span>
-  <div class="flex-con">
-    <table class="books-table">
-      <thead>
-        <th>Id</th>
-        <th onclick="onSortByName()">Title</th>
-        <th onclick="onSortByPrice()">Price</th>
-        <th>book picture</th>
-        <th>rate</th>
-        <th colspan="3">Actions</th>
-      </thead>
-      <tbody class="books-display"></tbody>
-    </table>
-    <div class="buttons-pages">
-      <button onclick="onPrevPage()">Previous Page</button>
-      <button onclick="onNextPage()">Next Page</button>
-      <div class="modal-update-price" hidden>
-        <input type="number" min="0" placeholder="What is the new price?" name="newPrice" />
-        <button onclick="onUpdatePrice()">update</button>
+  <div class="d-flex-column justify-content-center">
+    <h1 id="head-line" data-trans="book-shop">Book Shop</h1>
+    <input type="text" name="title" data-trans="placeholder-title" placeholder="Title">
+    <input type="number" name="price" min="0" data-trans="price" placeholder="Price">
+    <button class="btn-add-book" data-trans="add" onclick="onAddBook()">add</button>
+    <!-- <span class="book-added"></span> -->
+    <select onchange="onSetLang(this.value)">
+      <option value="en">English</option>
+      <option value="he">עברית</option>
+      <option value="es">Spanish</option>
+    </select>
+    <div class="flex-con">
+      <table class="books-table">
+        <thead>
+          <th data-trans="id">Id</th>
+          <th onclick="onSortByName()" data-trans="title" class="click">Title</th>
+          <th onclick="onSortByPrice()" data-trans="price" class="click">Price</th>
+          <th data-trans="book-picture">book picture</th>
+          <th data-trans="rate">rate</th>
+          <th colspan="3" data-trans="actions">Actions</th>
+        </thead>
+        <tbody class="books-display"></tbody>
+      </table>
+      <div class="buttons-pages">
+        <button onclick="onPrevPage()" data-trans="prev-page">Previous Page</button>
+        <button onclick="onNextPage()" data-trans="next-page">Next Page</button>
+        <div class="modal-update-price" hidden>
+          <input type="number" min="0" data-trans="new-price" placeholder="What is the new price?" name="newPrice" />
+          <button onclick="onUpdatePrice()" data-trans="update">update</button>
+        </div>
+      </div>
+      <div class="modal123" hidden>
+
       </div>
     </div>
-    <div class="modal" hidden>
-
-    </div>
   </div>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+    integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous">
+  </script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+    integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous">
+  </script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+    integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous">
+  </script>
+
   <script src="javascript/util-service.js"></script>
+  <script src="javascript/trans-service.js"></script>
   <script src="javascript/storage-service.js"></script>
   <script src="javascript/book-service.js"></script>
   <script src="javascript/book-controller.js"></script>

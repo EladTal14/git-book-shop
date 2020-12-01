@@ -8,6 +8,7 @@ input {
 
 .books-table {
   margin: auto;
+  margin-bottom: 10px;
 }
 
 table {
@@ -40,7 +41,7 @@ img {
   height: 140px;
 }
 
-.modal {
+.modal123 {
   background-color: rgb(206, 83, 83);
   flex-grow: 2;
 }
@@ -67,4 +68,11 @@ table img {
 .book-added {
   margin-left: 30px;
   color: black;
+}
+.click{
+  cursor: pointer;
+}
+
+.animate__animated.animate__bounce {
+  --animate-duration: 2s;
 }
