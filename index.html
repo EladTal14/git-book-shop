@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>book-Shit</title>
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+
+<body onload="onInit()">
+  <h1>Book Shop</h1>
+  <input type="text" name="title" placeholder="Title">
+  <input type="number" name="price" min="0" placeholder="Price">
+  <button class="btn-add-book" onclick="onAddBook()">add</button>
+  <span class="book-added"></span>
+  <div class="flex-con">
+    <table class="books-table">
+      <thead>
+        <th>Id</th>
+        <th onclick="onSortByName()">Title</th>
+        <th onclick="onSortByPrice()">Price</th>
+        <th>book picture</th>
+        <th>rate</th>
+        <th colspan="3">Actions</th>
+      </thead>
+      <tbody class="books-display"></tbody>
+    </table>
+    <div class="buttons-pages">
+      <button onclick="onPrevPage()">Previous Page</button>
+      <button onclick="onNextPage()">Next Page</button>
+      <div class="modal-update-price" hidden>
+        <input type="number" min="0" placeholder="What is the new price?" name="newPrice" />
+        <button onclick="onUpdatePrice()">update</button>
+      </div>
+    </div>
+    <div class="modal" hidden>
+
+    </div>
+  </div>
+  <script src="javascript/util-service.js"></script>
+  <script src="javascript/storage-service.js"></script>
+  <script src="javascript/book-service.js"></script>
+  <script src="javascript/book-controller.js"></script>
+</body>
+
+</html>
